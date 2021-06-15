@@ -20,7 +20,9 @@ Rails.application.routes.draw do
 
   end
   
-  devise_for :admins
+ devise_for :admin, controllers: {
+  sessions: 'admin/sessions'
+}
   root :to => 'public/homes#top'
   get "about" => 'public/homes#about'
   devise_for :customers
