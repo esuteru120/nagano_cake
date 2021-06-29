@@ -2,12 +2,13 @@ Rails.application.routes.draw do
   devise_for :admin, controllers: {
   sessions: 'admin/sessions'
   }
-  root :to => 'admin/homes#top'
+  root :to => 'public/homes#top'
   devise_for :customers, controllers: {
   sessions: 'public/sessions',registrations: 'public/registrations'
   }
   
   namespace :admin do
+  root :to => 'homes#top'
   resources :admins
   resources :products
   resources :customers
@@ -16,16 +17,18 @@ Rails.application.routes.draw do
   end
   
   scope module: :public do
-  resources :customers
-  resources :addresses
+  get 'customers/quit' => 'customers#quit', as: 'customers_quit'
+  get 'customers/show' => 'customers#show', as: 'customers_show'
+  get 'customers/edit' => 'customers#edit', as: 'customers_edit'
+  get 'customers/update' => 'customers#update', as: 'customers_update'
+  resources :shipping_address
   resources :items
   resources :genres
+  delete "cart_items/destroy_all", to: 'cart_items#destroy_all'
   resources :cart_items
   resources :orders
   resources :order_details
-  get 'customers/quit'
-  patch 'customers/out'
-  delete "cart_items/destroy_all", to: 'cart_items#destroy_all'
+  patch 'customers/out' => 'customers#out', as: 'customers_out'
   get 'orders/log'
   get 'orders/thanx'
   get "about", as:'about', to:'homes#about'

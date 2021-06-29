@@ -14,7 +14,7 @@ class Customer < ApplicationRecord
 
     # 退会機能
     def active_for_authentication?
-      super && (self.is_active == false)
+      super && (self.is_active == true)
     end
 
        validates :last_name,  presence: true
