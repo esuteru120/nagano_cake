@@ -3,9 +3,8 @@ Rails.application.routes.draw do
   sessions: 'admin/sessions'
   }
   root :to => 'public/homes#top'
-  devise_for :customers, controllers: {
-  sessions: 'public/sessions',registrations: 'public/registrations'
-  }
+  
+ 
   
   namespace :admin do
   root :to => 'homes#top'
@@ -17,10 +16,12 @@ Rails.application.routes.draw do
   end
   
   scope module: :public do
-  get 'customers/quit' => 'customers#quit', as: 'customers_quit'
-  get 'customers/show' => 'customers#show', as: 'customers_show'
-  get 'customers/edit' => 'customers#edit', as: 'customers_edit'
-  get 'customers/update' => 'customers#update', as: 'customers_update'
+  resource :customers, only:[:show,:edit,:update] do 
+    collection do 
+      get 'quit'
+      patch 'out'
+    end
+  end 
   resources :shipping_address
   resources :items
   resources :genres
@@ -28,14 +29,14 @@ Rails.application.routes.draw do
   resources :cart_items
   resources :orders
   resources :order_details
-  patch 'customers/out' => 'customers#out', as: 'customers_out'
   get 'orders/log'
   get 'orders/thanx'
   get "about", as:'about', to:'homes#about'
   
   end
-  
- 
+   devise_for :customers, controllers: {
+  sessions: 'public/sessions', registrations: 'public/registrations', passwords: 'public/passwords'
+  }
   #get "about" => 'public/homes#about'
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
