@@ -1,9 +1,40 @@
-     <p class="text-left border border-dark", style="margin: 20px 500px;">
-     <br>
-     ようこそ、ながのCAKEへ！<br>
-     このサイトは、ケーキ販売のECサイトになります。<br>
-     会員でない方も商品の閲覧はできますが、<br>
-     購入には会員登録が必要になります。<br>
-     <br>
-    </P>
-    <h2>新着商品</h2>
+<div class="d-flex">
+  <div class="text-left border border-dark pr-5", style="margin: 20px auto;">
+    <p>
+      <br>
+       ようこそ、ながのCAKEへ！<br>
+       このサイトは、ケーキ販売のECサイトになります。<br>
+       会員でない方も商品の閲覧はできますが、<br>
+       購入には会員登録が必要になります。<br>
+      <br>
+    </p>   
+   </div>
+</div>
+
+<div class="container">
+  <h3 class="recommended-items" style="font-family: HiraMinPro-W6; color: #000000;">新着商品</h3>
+  <div class="row flex-wrap ">
+   <% @items.each do |item| %>
+      <div class="col-3">
+          
+        <%= link_to item_path(item.id) ,style: "color: black;", data: {"turbolinks" => false} do %>
+        <div>
+           <%= attachment_image_tag item, :image, format: 'jpeg',fallback: "no_image.jpg", size: '220x200' %>
+        </div>
+        <div>
+          <%= item.name %>
+        </div>
+        <div>
+           <%= "¥"+item.price.to_s(:delimited, delimiter: ',') %>
+        </div>
+           
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-end">
+      <div>
+        <%= link_to "全ての商品を見る>", items_path, class: "btn btn-info" %>
+      </div>
+  </div>
+</div>

@@ -27,10 +27,10 @@ Rails.application.routes.draw do
   resources :genres
   delete "cart_items/destroy_all", to: 'cart_items#destroy_all'
   resources :cart_items
+  post 'orders/log'
+  get 'orders/thanx'
   resources :orders
   resources :order_details
-  get 'orders/log'
-  get 'orders/thanx'
   get "about", as:'about', to:'homes#about'
   
   end
