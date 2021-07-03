@@ -11,9 +11,9 @@
 		<%= form_with model: @order, url: orders_log_path, method: :post , local: true do |form| %>
 			<h3>支払方法</h3>
 
-		    <span>    </span><%= form.radio_button :pyament ,0, checked: "checked" %>
+		    <span>    </span><%= form.radio_button :payment ,0, checked: "checked" %>
 			<%= form.label :クレジットカード %><br>
-	  		<span>    </span><%= form.radio_button :pyament,1 %>
+	  		<span>    </span><%= form.radio_button :payment,1 %>
             <%= form.label :銀行振込 %>
 			<h3>お届け先</h3>
 

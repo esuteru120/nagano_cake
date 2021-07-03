@@ -12,7 +12,7 @@
       <% if genre.status == true %>
         <tr>
           <td>
-            <%= link_to genre.name, items_path, class:"ec-genre-list-item"%>
+            <%= link_to genre.name, genre_path(genre.id), class:"ec-genre-list-item"%>
             </td>
         </tr>
            <% end %>

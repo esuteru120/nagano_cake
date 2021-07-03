@@ -4,7 +4,7 @@
       <h2>ジャンル一覧・追加</h2><br>
     <div class="form-group col-md-12">
     <%= form_for(@genre, url: admin_genres_path) do |f| %>
-          <%= f.label :ジャンル %>
+          <%= f.label :ジャンル名 %>
           <%= f.text_field :name,class: "col-md-4" %>
           <%= f.radio_button :status, :true %>
           <%= f.label :status, "有効"  %>

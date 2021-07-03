@@ -72,3 +72,5 @@ gem "refile-mini_magick"
 gem 'ransack'
 
 gem 'kaminari'
+
+gem 'pry-rails'

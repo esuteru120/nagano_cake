@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :products
   resources :customers
   resources :orders
+  resources :order_details, only:[:update]
   resources :genres
   end
   

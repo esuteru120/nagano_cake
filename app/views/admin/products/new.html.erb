@@ -1,33 +1,38 @@
-<div class="container takasa">
+<div class="container">
   <h2>商品新規登録</h2><br>
-   <div class="row row-new">
+  <div class="row"> 
     <%= form_for(@item, url:admin_products_path) do |f| %>
-      
-      <div class="new-field form-group row">
-        <h4><%= f.label :商品画像 ,class: "col-3"%></h4>
-        <%= f.attachment_field :image, placeholder: "商品画像",class: "col-8" %>
-      </div>
-      <div class="new-field form-group row">
-        <h4><%= f.label :商品名 ,class: "col-3" %>
-        <%= f.text_field :name, autofocus: true, autocomplete: "name" ,class: "col-8"%></h4>
-      </div>
-      <div class="new-field form-group row">
-        <h4><%= f.label :商品説明 ,class: "col-3" %>
-        <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" ,class: "col-8"%></h4>
-      </div>
-      <div class="new-field form-group row">
-        <h4><%= f.label :ジャンル ,class: "col-3 fix" %>
-        <%= f.collection_select :genre_id, Genre.all, :id, :name %></h4>
-      </div>
-      <div class="new-fieldform-group row">
-        <h4><%= f.label :税抜価格 ,class: "col-3 block"  %>
-        <%= f.text_field :price, autofocus: true, autocomplete: "price" ,class: "col-8"%></h4>
-      </div>
-      <div class="new-fieldform-group row">
-        <h4><%= f.label :販売ステータス  ,class: "col-3 fix" %>
-        <%= f.select :is_active, ["販売中", "販売停止"] ,class: "btn btn-primary"%></h4>
-      </div>
+      <div class="col">
+        <div class="row form-group">
+          <%= f.label :商品画像 ,class: "col-3"%>
+          <%= f.attachment_field :image, placeholder: "商品画像", class: "col-9" %>
+        </div>
+        <div class="row form-group">
+          <%= f.label :商品名 ,class: "col-3" %>
+          <%= f.text_field :name, autofocus: true, autocomplete: "name" ,class: "col-6"%>
+        </div>
+        <div class="row form-group">
+          <%= f.label :商品説明 ,class: "col-3" %>
+          <%= f.text_area :introduction, autofocus: true, autocomplete: "introduction" ,class: "col-6"%>
+        </div>
+        <div class="row form-group">
+          <%= f.label :ジャンル ,class: "col-3" %>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+        </div>
+        <div class="row form-group">
+          <%= f.label :税抜価格 ,class: "col-3"  %>
+          <%= f.text_field :price, autofocus: true, autocomplete: "price" ,class: "col-6"%>
+        </div>
+        <div class="row align-middle form-group">
+          <%= f.label "販売ステータス" ,class: "col-5" %>
+          <%= f.radio_button :is_active, true, class: "radio" %>
+          <%= f.label "販売中", class: "mr-2" %>
+          <%= f.radio_button :is_active, false, class: "radio" %>    
+          <%= f.label "販売停止中" %>
+        </div>
         <div class="text-right"><%= f.submit "商品登録" ,class: "btn btn-primary"%></div>
+      </div>
+      
     <% end %>
     </div>
 </div>
