@@ -7,8 +7,7 @@ class Public::OrdersController < ApplicationController
 
   def log
     @cart_items = current_customer.cart_items
-    @hoge = @cart_items.map {|cart_item|  cart_item.amount * cart_item.item.price }
-    @hoge = @hoge.join.to_i
+    @hoge = @cart_items.map {|cart_item|  cart_item.amount * cart_item.item.price }.sum * 1.1
     @order = Order.new(order_params)
     @order.payment = params[:order][:payment].to_i
     @order.customer_id = current_customer.id

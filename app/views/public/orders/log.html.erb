@@ -43,13 +43,13 @@
           <tr>
             <th class="info">商品合計</th>
             <td class="text-right">
-             ¥<%=@hoge.to_s(:delimited, delimiter: ',') %>
+             ¥<%=@hoge.round.to_s(:delimited, delimiter: ',') %>
             </td>
           </tr>
           <tr>
             <th class="info">請求金額</th>
             <td class="text-right">
-               ¥<%= (@hoge + @order.shipping).to_s(:delimited, delimiter: ',') %>
+               ¥<%= (@hoge.round + @order.shipping).to_s(:delimited, delimiter: ',') %>
             </td>
           </tr>
       </table>
@@ -65,7 +65,7 @@
         <tr>
           <th  class="info">お届け先</th>
           <td class="text-left">
-            <%= session[:order][:post_code] %><br>
+            <%= session[:order][:postal_code] %><br>
             <%= session[:order][:address] %><br>
             <%= session[:order][:name]  %>
           </td>
